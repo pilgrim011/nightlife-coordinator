@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=pdevice-width, initial-scale=1"/>
+  <title>Nightlife coordinator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/script.js"></script>
+</head>
+<body>
+  <nav>
+    <ul id="home">
+      <li id="night"><a href="/">Nightlife</a></li>
+    </ul>
+  </nav>
+  <div class="container text-center">
+    <h1>Plans tonight?</h1>
+    <i class="fa fa-map-marker fa-5x d-inline"></i>
+    <i class="fa fa-cab fa-5x d-inline"></i>
+    <i class="fa fa-glass fa-5x d-inline"></i>
+    <h2>See which bars are hoppin' tonight and RSVP ahead of time!<br>
+      Remember: take a cab and drink responsibly</h2><br>
+      <h3>Results from <a href="https://www.yelp.com/"><img class="yelp-logo" src="yelp.png" alt="Yelp" ></a></h3>
+    </div>
+    <div class="container center">
+      <form action="/search" method="get" id="form">
+        <input id="locate" type="search" name="search" placeholder="enter a location">
+        <button id="search" type="submit" class="btn btn-primary" onclick="return empty()">Search</button>
+      </form>
+    </div>
+    <%for(item=0;item<results.length;item++){%>
+      <div class="row center-block">
+      <div class="col-sm-4"><a target="_blank" href=<%=results[item].url%>><img src= <%=results[item].image_url%> alt="Bar pic" class="pull-left bar"></a> </div>
+      <div class="col-sm-4"><h3><%=results[item].name%></h3><br><h3>Price: <%=results[item].price%></h3><br><h3>Rating: <%=results[item].rating%></h3></div>
+      <%if (isLogged&&typeof provider!=="undefined"){%>
+        <div class="col-sm-4"><button onclick="change(this)" type="button" class="btn btn-primary btn-lg reserve">Not going</button></div>
+        <%}else{%>
+          <form action="/login/facebook" method="get" class="face">
+          <div class="col-sm-4"><button type="submit" class="btn btn-primary btn-lg reserve">Reserve</button></div>
+          </form>
+          <%}%>
+          </ul>
+          </div>
+          <%}%>
+        </body>
+        </html>
