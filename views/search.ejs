@@ -34,9 +34,10 @@
       </form>
     </div>
     <%for(item=0;item<results.length;item++){%>
+
       <div class="row center-block">
       <div class="col-sm-4"><a target="_blank" href=<%=results[item].url%>><img src= <%=results[item].image_url%> alt="Bar pic" class="pull-left bar"></a> </div>
-      <div class="col-sm-4"><h3><%=results[item].name%></h3><br><h3>Price: <%=results[item].price%></h3><br><h3>Rating: <%=results[item].rating%></h3></div>
+      <div class="col-sm-4 info"><h3><%=results[item].name%></h3><br><h3>Price: <%=results[item].price%></h3><br><h3>Rating: <%=results[item].rating%></h3><br></div>
       <%if (isLogged&&typeof provider!=="undefined"){%>
         <div class="col-sm-4"><button onclick="change(this)" type="button" class="btn btn-primary btn-lg reserve">Not going</button></div>
         <%}else{%>
@@ -44,8 +45,8 @@
           <div class="col-sm-4"><button type="submit" class="btn btn-primary btn-lg reserve">Reserve</button></div>
           </form>
           <%}%>
-          </ul>
           </div>
+
           <%}%>
         </body>
         </html>

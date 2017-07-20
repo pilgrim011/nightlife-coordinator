@@ -13,7 +13,7 @@ var session = require('express-session');
 passport.use(new Strategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: '/login/facebook/return'
+  callbackURL: 'https://night-bars.herokuapp.com/login/facebook/return'
 },
 function(accessToken, refreshToken, profile, cb) {
   return cb(null, profile);
@@ -66,10 +66,14 @@ app.get('/search', function(req, res) {
     res.send("Could not execute search, try specifying a more exact location.");
   });
 });
+app.get('/login',
+  function(req, res){
+    res.render('login');
+});
 app.get('/login/facebook',
 passport.authenticate('facebook'));
 app.get('/login/facebook/return',
-passport.authenticate('facebook', { failureRedirect: '/failure' }),
+passport.authenticate('facebook', { failureRedirect: '/login' }),
 cel.ensureLoggedIn(),
 function(req, res) {
   var sess = req.session;
